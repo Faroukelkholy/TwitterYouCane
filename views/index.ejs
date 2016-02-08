@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Twitter server test</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
+
+    </head>
+    <body>
+        Welcome to twitter server test.
+        Please enter a message to tweet.
+        <form>
+            <input type="text" id="tweet" placeholder="message"></input>
+            <button type="submit" onclick="submitMessage();">Submit tweet</button>
+        </form>
+
+        Please enter a username to search for his tweets.
+        <form>
+            <input type="text" id="user" placeholder="username"></input>
+            <button type="submit" onclick="submitUser();">Submit</button>
+        </form>
+        <div id="notification"></div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+        <script>
+            function submitMessage(){
+                var tweet = $("#tweet").val();
+                if(tweet.length < 1) alert("Error submitting message");
+                else {
+                    console.log('Here');
+                    $.post('/status',{
+                        message: tweet
+                    }).done(function(data){
+                        $("#notification").text('Message submitted sucessfully.');
+                    });
+                }
+            }
+
+            function submitUser(){
+                var user = $("#user").val();
+                if(tweet.length < 1) alert("Error submitting username.");
+                else {
+                    console.log('Here');
+                    $.post('/',{
+                        username: user
+                    }).done(function(data){
+                        $("#notification").text("User submitted sucessfully");
+                    });
+                }
+            }
+        </script>
+    </body>
+</html>
